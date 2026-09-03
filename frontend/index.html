@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magic Pizza – Rodízio Domiciliar</title>
+
+    <!-- Fontes: Playfair Display (títulos), DM Sans (texto), Bebas Neue (números/destaques) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- Link de acessibilidade: permite pular a navegação usando o teclado -->
+    <a class="skip-link" href="#mainContent">Pular para o conteúdo</a>
+
+    <!-- Container geral do app -->
+    <section class="app-shell">
+
+        <!-- ============================================
+             SIDEBAR — navegação principal (todas as abas)
+             ============================================ -->
+        <span class="sidebar-overlay" id="sidebarOverlay"></span>
+
+        <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+            <header class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">🍕</span>
+                    <h1 class="logo-text">
+                        <span class="logo-main">Magic Pizza</span>
+                        <span class="logo-sub">Rodízio Domiciliar</span>
+                    </h1>
+                </div>
+                <button type="button" class="btn-sidebar-close" id="btnSidebarClose" aria-label="Fechar menu">✕</button>
+            </header>
+
+            <nav class="nav-list" role="tablist" aria-label="Seções do site">
+                <button class="nav-link active" role="tab" aria-selected="true" aria-controls="tab-inicio" id="tab-btn-inicio" data-tab="inicio">
+                    <span class="nav-icon" aria-hidden="true">🏠</span> Início
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-historia" id="tab-btn-historia" data-tab="historia">
+                    <span class="nav-icon" aria-hidden="true">📖</span> Nossa História
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-valores" id="tab-btn-valores" data-tab="valores">
+                    <span class="nav-icon" aria-hidden="true">💰</span> Consultar Valores
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-pedidos" id="tab-btn-pedidos" data-tab="pedidos">
+                    <span class="nav-icon" aria-hidden="true">🍕</span> Montar Pedido
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-finalizar" id="tab-btn-finalizar" data-tab="finalizar">
+                    <span class="nav-icon" aria-hidden="true">✅</span> Finalizar Pedido
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-feedback" id="tab-btn-feedback" data-tab="feedback">
+                    <span class="nav-icon" aria-hidden="true">💬</span> Feedback
+                </button>
+                <button class="nav-link" role="tab" aria-selected="false" aria-controls="tab-galeria" id="tab-btn-galeria" data-tab="galeria">
+                    <span class="nav-icon" aria-hidden="true">🖼️</span> Galeria de Eventos
+                </button>
+
+                <fieldset class="nav-admin-group">
+                    <button class="nav-link nav-link--admin" role="tab" aria-selected="false" aria-controls="tab-admin" id="tab-btn-admin" data-tab="admin">
+                        <span class="nav-icon" aria-hidden="true">🔒</span> Área da Equipe
+                    </button>
+                </fieldset>
+            </nav>
+
+            <footer class="sidebar-footer">
+                <span class="header-badge" id="badgePreco">R$40<small>/pessoa</small></span>
+            </footer>
+        </aside>
+
+        <!-- ============================================
+             CONTEÚDO PRINCIPAL
+             ============================================ -->
+        <div class="app-main">
+            <header class="topbar">
+                <button type="button" class="btn-hamburger" id="btnSidebarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="topbar-logo">
+                    <span class="logo-icon" aria-hidden="true">🍕</span>
+                    <span class="logo-main">Magic Pizza</span>
+                </div>
+
+                <span class="topbar-title" id="topbarTitle">Início</span>
+
+                <span class="header-badge header-badge--topbar" aria-hidden="true">R$40<small>/pessoa</small></span>
+            </header>
+
+            <dialog class="progress-bar" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do pedido" hidden>
+                <span class="progress-fill" id="progressFill"></span>
+            </dialog>
+
+            <main class="main-content" id="mainContent">
+
+                <!-- ============================================
+                     ABA — INÍCIO (página inicial)
+                     ============================================ -->
+                <section class="tab-panel active" id="tab-inicio" role="tabpanel" aria-labelledby="tab-btn-inicio">
+                    <header class="home-hero">
+                        <mark class="historia-badge">Desde 2008 · 3.000+ eventos</mark>
+                        <h1 class="historia-title">O rodízio de pizza chega <em>até você</em></h1>
+                        <p class="historia-lead">Fornos, ingredientes e equipe completa direto na sua festa — você só escolhe os sabores e a data.</p>
+                        <nav class="home-hero-actions" aria-label="Ações rápidas">
+                            <button type="button" class="btn-primary" data-goto="pedidos">Montar meu pedido →</button>
+                            <button type="button" class="btn-secondary" data-goto="valores">Consultar valores</button>
+                        </nav>
+                    </header>
+
+                    <!-- Sequência numérica do processo -->
+                    <section class="home-steps" aria-labelledby="titulo-como-funciona">
+                        <h2 class="section-title section-title--sm" id="titulo-como-funciona">Como funciona</h2>
+                        <ol class="steps-grid">
+                            <li class="step-card">
+                                <span class="step-num" aria-hidden="true">01</span>
+                                <h3>Escolha os sabores</h3>
+                                <p>Monte seu cardápio com salgados e doces direto na aba "Montar Pedido".</p>
+                            </li>
+                            <li class="step-card">
+                                <span class="step-num" aria-hidden="true">02</span>
+                                <h3>Informe data e endereço</h3>
+                                <p>Preencha os dados do evento e confirme com poucos cliques.</p>
+                            </li>
+                            <li class="step-card">
+                                <span class="step-num" aria-hidden="true">03</span>
+                                <h3>Aproveite a festa</h3>
+                                <p>Nossa equipe chega com tudo pronto: fornos, ingredientes e atendimento completo.</p>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <nav class="home-highlights" aria-label="Destaques do serviço">
+                        <button type="button" class="highlight-card" data-goto="valores">
+                            <span class="valores-card-icone" aria-hidden="true">💰</span>
+                            <h3>Preço transparente</h3>
+                            <p>Um valor único por pessoa, sem taxas escondidas.</p>
+                        </button>
+                        <button type="button" class="highlight-card" data-goto="pedidos">
+                            <span class="valores-card-icone" aria-hidden="true">🍕</span>
+                            <h3>Cardápio variado</h3>
+                            <p>Até 40 sabores salgados e 10 doces à sua escolha.</p>
+                        </button>
+                        <button type="button" class="highlight-card" data-goto="valores">
+                            <span class="valores-card-icone" aria-hidden="true">👨‍🍳</span>
+                            <h3>Equipe dimensionada</h3>
+                            <p>1 pizzaiolo e 1 garçom a cada 25 convidados.</p>
+                        </button>
+                        <button type="button" class="highlight-card" data-goto="historia">
+                            <span class="valores-card-icone" aria-hidden="true">🌟</span>
+                            <h3>16 anos de história</h3>
+                            <p>Conheça a trajetória da Magic Pizza.</p>
+                        </button>
+                    </nav>
+
+                    <section class="home-teasers" aria-label="Demonstrações e avaliações">
+                        <article class="teaser-card" aria-labelledby="titulo-teaser-galeria">
+                            <header class="teaser-head">
+                                <h2 class="section-title section-title--sm" id="titulo-teaser-galeria">Fotos de festas reais</h2>
+                                <button type="button" class="teaser-link" data-goto="galeria">Ver galeria completa →</button>
+                            </header>
+                            <figure class="teaser-galeria" id="galeriaPreviewInicio">
+                                <p class="teaser-vazio">Em breve, fotos de festas incríveis por aqui!</p>
+                            </figure>
+                        </article>
+
+                        <article class="teaser-card" aria-labelledby="titulo-teaser-feedback">
+                            <header class="teaser-head">
+                                <h2 class="section-title section-title--sm" id="titulo-teaser-feedback">O que dizem nossos clientes</h2>
+                                <button type="button" class="teaser-link" data-goto="feedback">Ver todos os depoimentos →</button>
+                            </header>
+                            <section class="teaser-feedback" id="feedbackPreviewInicio">
+                                <p class="teaser-vazio">Seja o primeiro a deixar um depoimento!</p>
+                            </section>
+                        </article>
+                    </section>
+
+                    <footer class="cta-bar">
+                        <p>Pronto para criar memórias deliciosas?</p>
+                        <button type="button" class="btn-primary" data-goto="pedidos">Montar meu pedido →</button>
+                    </footer>
+                </section>
+
+                <!-- ============================================
+                     ABA — NOSSA HISTÓRIA
+                     ============================================ -->
+                <section class="tab-panel" id="tab-historia" role="tabpanel" aria-labelledby="tab-btn-historia">
+                    <header class="historia-hero">
+                        <mark class="historia-badge">Desde 2008</mark>
+                        <h1 class="historia-title">Uma fatia de <em>magia</em> na sua festa</h1>
+                        <p class="historia-lead">O primeiro e mais querido rodízio domiciliar de pizza da região.</p>
+                    </header>
+
+                    <section class="historia-grid">
+                        <article class="historia-card card-destaque">
+                            <span class="card-icon" aria-hidden="true">✨</span>
+                            <h2>Como Funciona o Rodízio Domiciliar</h2>
+                            <p>A Magic Pizza leva toda a experiência de um rodízio completo até a sua casa, salão ou espaço de festas. Nossa equipe chega no horário combinado com fornos portáteis profissionais, ingredientes frescos e toda a estrutura necessária para preparar pizzas na hora, quentinhas e crocantes, direto para os seus convidados.</p>
+                            <p>Durante o evento, nossos <strong>pizzaiolos experientes</strong> preparam os sabores escolhidos por você em sequência, enquanto os <strong>garçons</strong> servem as fatias diretamente à mesa, garantindo que todos sejam atendidos com atenção e agilidade.</p>
+                            <p>A cada <strong>25 convidados</strong>, disponibilizamos <strong>1 pizzaiolo</strong> e <strong>1 garçom</strong>, garantindo um atendimento personalizado e sem filas. Você pode escolher até <strong>40 sabores salgados</strong> e <strong>10 sabores doces</strong> para compor o seu evento dos sonhos.</p>
+                            <p>Confira os valores atualizados na aba <strong>Consultar Valores</strong> — sem surpresas, sem taxas escondidas.</p>
+                        </article>
+
+                        <aside class="historia-side" aria-label="Resumo e estatísticas">
+                            <article class="historia-card card-origem">
+                                <span class="card-icon" aria-hidden="true">🌟</span>
+                                <h2>Nossa História</h2>
+                                <p>Nascemos em uma pequena cozinha de bairro, com um forno e um sonho: levar o clima de pizzaria italiana para dentro da casa das pessoas. O que começou entre amigos e família virou um dos rodízios domiciliares mais procurados da região, sempre com a mesma receita de sucesso: ingredientes frescos, atendimento próximo e muito carinho em cada fatia.</p>
+                            </article>
+
+                            <dl class="historia-stats">
+                                <section class="stat-item">
+                                    <dt class="stat-label">Eventos realizados</dt>
+                                    <dd class="stat-num">3.000+</dd>
+                                </section>
+                                <section class="stat-item">
+                                    <dt class="stat-label">Sabores únicos</dt>
+                                    <dd class="stat-num">50+</dd>
+                                </section>
+                                <section class="stat-item">
+                                    <dt class="stat-label">Anos de história</dt>
+                                    <dd class="stat-num">16</dd>
+                                </section>
+                            </dl>
+                        </aside>
+                    </section>
+
+                    <footer class="cta-bar">
+                        <p>Pronto para criar memórias deliciosas?</p>
+                        <button type="button" class="btn-primary" data-goto="pedidos">Montar meu pedido →</button>
+                    </footer>
+                </section>
+
+                <!-- ============================================
+                     ABA — CONSULTAR VALORES
+                     ============================================ -->
+                <section class="tab-panel" id="tab-valores" role="tabpanel" aria-labelledby="tab-btn-valores">
+                    <header class="pedidos-header">
+                        <h2 class="section-title">Consultar Valores</h2>
+                        <p class="section-sub">Transparência total: veja como calculamos o preço do seu evento</p>
+                    </header>
+
+                    <section class="valores-grid" aria-label="Informações de valores">
+                        <article class="valores-card valores-card--destaque">
+                            <span class="valores-card-label">Valor por pessoa</span>
+                            <strong class="valores-card-preco" id="valorPorPessoa">R$ 40,00</strong>
+                            <p class="valores-card-desc">Já inclui mão de obra, equipamentos, ingredientes e embalagens.</p>
+                        </article>
+
+                        <article class="valores-card">
+                            <span class="valores-card-icone" aria-hidden="true">👨‍🍳</span>
+                            <h3>Equipe dimensionada para o seu evento</h3>
+                            <p>A cada <strong id="valorPessoasEquipe">25</strong> convidados, enviamos <strong>1 pizzaiolo</strong> e <strong>1 garçom</strong> extra, para que o atendimento nunca fique sobrecarregado.</p>
+                        </article>
+
+                        <article class="valores-card">
+                            <span class="valores-card-icone" aria-hidden="true">🍕</span>
+                            <h3>Cardápio incluso no valor</h3>
+                            <p>Escolha livremente entre <strong>40 sabores salgados</strong> e <strong>10 sabores doces</strong> — sem cobrança adicional por sabor.</p>
+                        </article>
+
+                        <article class="valores-card">
+                            <span class="valores-card-icone" aria-hidden="true">💳</span>
+                            <h3>Formas de pagamento</h3>
+                            <p>Aceitamos Pix, cartão de crédito, cartão de débito ou dinheiro na finalização do pedido.</p>
+                        </article>
+                    </section>
+
+                    <!-- Simulador rápido -->
+                    <form class="simulador" aria-labelledby="titulo-simulador" onsubmit="return false;">
+                        <h3 id="titulo-simulador">Simule o valor do seu evento</h3>
+                        <fieldset class="simulador-inputs">
+                            <label for="simuladorPessoas">Quantidade de convidados</label>
+                            <input type="number" id="simuladorPessoas" min="1" placeholder="Ex: 60" />
+                        </fieldset>
+                        <fieldset class="simulador-resultado">
+                            <section>
+                                <span class="simulador-label">Equipe necessária</span>
+                                <output class="simulador-valor" id="simuladorEquipe">–</output>
+                            </section>
+                            <section>
+                                <span class="simulador-label">Valor estimado</span>
+                                <output class="simulador-valor simulador-valor--preco" id="simuladorTotal">R$ 0,00</output>
+                            </section>
+                        </fieldset>
+                    </form>
+
+                    <footer class="cta-bar">
+                        <p>Já sabe quantos convidados vão ter na sua festa?</p>
+                        <button type="button" class="btn-primary" data-goto="pedidos">Montar meu pedido →</button>
+                    </footer>
+                </section>
+
+                <!-- ============================================
+                     ABA — MONTAR PEDIDO (escolha de sabores)
+                     ============================================ -->
+                <section class="tab-panel" id="tab-pedidos" role="tabpanel" aria-labelledby="tab-btn-pedidos">
+                    <header class="pedidos-header">
+                        <h2 class="section-title">Monte seu Rodízio</h2>
+                        <p class="section-sub">Escolha os sabores que vão fazer a sua festa ser inesquecível</p>
+                        <aside class="selection-counter" aria-live="polite">
+                            <span id="counterSalgadas">0</span> salgadas &nbsp;|&nbsp; <span id="counterDoces">0</span> doces selecionadas
+                        </aside>
+                    </header>
+
+                    <section class="pizza-section" aria-labelledby="titulo-pizzas-salgadas">
+                        <header class="pizza-section-header salgada">
+                            <span class="pizza-type-icon" aria-hidden="true">🍕</span>
+                            <h3 id="titulo-pizzas-salgadas">Pizzas Salgadas <em>(até 40 sabores)</em></h3>
+                        </header>
+                        <ul class="pizza-grid" id="gridSalgadas"></ul>
+                    </section>
+
+                    <section class="pizza-section" aria-labelledby="titulo-pizzas-doces">
+                        <header class="pizza-section-header doce">
+                            <span class="pizza-type-icon" aria-hidden="true">🍫</span>
+                            <h3 id="titulo-pizzas-doces">Pizzas Doces <em>(até 10 sabores)</em></h3>
+                        </header>
+                        <ul class="pizza-grid" id="gridDoces"></ul>
+                    </section>
+
+                    <footer class="cta-bar">
+                        <p id="pizzaSelectMsg">Selecione ao menos 1 sabor para continuar</p>
+                        <button type="button" class="btn-primary" data-goto="finalizar">Finalizar pedido →</button>
+                    </footer>
+                </section>
+
+                <!-- ============================================
+                     ABA — FINALIZAR PEDIDO
+                     ============================================ -->
+                <section class="tab-panel" id="tab-finalizar" role="tabpanel" aria-labelledby="tab-btn-finalizar">
+                    <header class="dados-header">
+                        <h2 class="section-title">Finalizar Pedido</h2>
+                        <p class="section-sub">Confira os sabores escolhidos e preencha seus dados para fechar o evento</p>
+                    </header>
+
+                    <div class="finalizar-grid">
+
+                        <!-- Form de checkout -->
+                        <form class="dados-form" id="dadosForm" novalidate>
+                            <fieldset class="form-group-fieldset">
+                                <legend class="form-group-title"><span aria-hidden="true">👤</span> Seus Dados</legend>
+                                <section class="form-row">
+                                    <div class="form-group form-group--wide">
+                                        <label for="nomeCompleto">Nome Completo <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="text" id="nomeCompleto" name="nomeCompleto" autocomplete="name" placeholder="Seu nome completo" required />
+                                        <span class="field-error" id="err-nome"></span>
+                                    </div>
+                                </section>
+                                <section class="form-row">
+                                    <div class="form-group">
+                                        <label for="cpf">CPF <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="text" id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required />
+                                        <span class="field-error" id="err-cpf"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="whatsapp">WhatsApp (confirmação) <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15" required />
+                                        <span class="field-error" id="err-whatsapp"></span>
+                                    </div>
+                                </section>
+                            </fieldset>
+
+                            <fieldset class="form-group-fieldset">
+                                <legend class="form-group-title"><span aria-hidden="true">💳</span> Forma de Pagamento</legend>
+                                <nav class="pagamento-opcoes" id="pagamentoOpcoes" aria-label="Opções de pagamento">
+                                    <label class="pagamento-opcao">
+                                        <input type="radio" name="formaPagamento" value="pix" checked />
+                                        <span>Pix</span>
+                                    </label>
+                                    <label class="pagamento-opcao">
+                                        <input type="radio" name="formaPagamento" value="credito" />
+                                        <span>Cartão de Crédito</span>
+                                    </label>
+                                    <label class="pagamento-opcao">
+                                        <input type="radio" name="formaPagamento" value="debito" />
+                                        <span>Cartão de Débito</span>
+                                    </label>
+                                    <label class="pagamento-opcao">
+                                        <input type="radio" name="formaPagamento" value="dinheiro" />
+                                        <span>Dinheiro</span>
+                                    </label>
+                                </nav>
+                            </fieldset>
+
+                            <fieldset class="form-group-fieldset">
+                                <legend class="form-group-title"><span aria-hidden="true">📅</span> Data, Hora e Convidados</legend>
+                                <section class="form-row">
+                                    <div class="form-group">
+                                        <label for="dataEvento">Data do Evento <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="date" id="dataEvento" name="dataEvento" required />
+                                        <span class="field-error" id="err-data"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="horaEvento">Horário do Evento <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="time" id="horaEvento" name="horaEvento" required />
+                                        <span class="field-error" id="err-hora"></span>
+                                    </div>
+                                </section>
+                                <section class="form-row">
+                                    <div class="form-group">
+                                        <label for="numPessoas">Quantidade de Pessoas <span class="req" aria-label="obrigatório">*</span></label>
+                                        <input type="number" id="numPessoas" name="numPessoas" inputmode="numeric" placeholder="Ex: 50" min="1" required />
+                                        <span class="field-error" id="err-pessoas"></span>
+                                    </div>
+                                </section>
+                            </fieldset>
+
+                            <fieldset class="form-group-fieldset">
+                                <legend class="form-group-title"><span aria-hidden="true">📍</span> Endereço da Festa</legend>
+                                <address class="address-inputs">
+                                    <section class="form-row">
+                                        <div class="form-group form-group--wide">
+                                            <label for="rua">Rua / Avenida <span class="req" aria-label="obrigatório">*</span></label>
+                                            <input type="text" id="rua" name="rua" autocomplete="street-address" placeholder="Ex: Rua das Flores, 123" required />
+                                            <span class="field-error" id="err-rua"></span>
+                                        </div>
+                                    </section>
+                                    <section class="form-row">
+                                        <div class="form-group">
+                                            <label for="bairro">Bairro <span class="req" aria-label="obrigatório">*</span></label>
+                                            <input type="text" id="bairro" name="bairro" placeholder="Ex: Centro" required />
+                                            <span class="field-error" id="err-bairro"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cidade">Cidade <span class="req" aria-label="obrigatório">*</span></label>
+                                            <input type="text" id="cidade" name="cidade" autocomplete="address-level2" placeholder="Ex: São Paulo" required />
+                                            <span class="field-error" id="err-cidade"></span>
+                                        </div>
+                                    </section>
+                                    <section class="form-row">
+                                        <div class="form-group form-group--wide">
+                                            <label for="referencia">Ponto de Referência <span class="optional">(opcional)</span></label>
+                                            <input type="text" id="referencia" name="referencia" placeholder="Ex: Próximo ao Mercado Central" />
+                                        </div>
+                                    </section>
+                                </address>
+                            </fieldset>
+                        </form>
+
+                        <!-- Resumo em tempo real do pedido -->
+                        <aside class="resumo-col" aria-label="Resumo do pedido">
+                            <article class="resumo-card" aria-labelledby="titulo-resumo-sabores">
+                                <h3 class="resumo-card-title" id="titulo-resumo-sabores"><span aria-hidden="true">🍕</span> Sabores Escolhidos</h3>
+                                <section class="resumo-sabores">
+                                    <section class="sabores-grupo">
+                                        <h4>Salgadas</h4>
+                                        <ul id="resumoSalgadas"></ul>
+                                    </section>
+                                    <section class="sabores-grupo">
+                                        <h4>Doces</h4>
+                                        <ul id="resumoDoces"></ul>
+                                    </section>
+                                </section>
+                            </article>
+
+                            <article class="resumo-card card-equipe" aria-labelledby="titulo-resumo-equipe">
+                                <h3 class="resumo-card-title" id="titulo-resumo-equipe"><span aria-hidden="true">👨‍🍳</span> Equipe para o seu Evento</h3>
+                                <section class="equipe-grid">
+                                    <section class="equipe-item">
+                                        <span class="equipe-icon" aria-hidden="true">🍕</span>
+                                        <output class="equipe-num" id="numPizzaiolos">–</output>
+                                        <span class="equipe-label">Pizzaiolos</span>
+                                    </section>
+                                    <section class="equipe-item">
+                                        <span class="equipe-icon" aria-hidden="true">🤵</span>
+                                        <output class="equipe-num" id="numGarcons">–</output>
+                                        <span class="equipe-label">Garçons</span>
+                                    </section>
+                                </section>
+                            </article>
+
+                            <article class="resumo-card card-preco" aria-labelledby="titulo-resumo-valor">
+                                <h3 class="resumo-card-title" id="titulo-resumo-valor"><span aria-hidden="true">💰</span> Valor Total</h3>
+                                <section class="preco-display">
+                                    <span class="preco-pessoas"><output id="resumoPessoas">0</output> pessoas × <output id="resumoPrecoUnitario">R$40</output></span>
+                                    <output class="preco-total" id="precoTotal">R$ 0,00</output>
+                                </section>
+                            </article>
+
+                            <footer class="confirmar-area">
+                                <p class="confirmar-disclaimer">Ao confirmar, nossa equipe entrará em contato pelo WhatsApp para validação final.</p>
+                            </footer>
+                        </aside>
+
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </section>
+
+</body>
+</html>
