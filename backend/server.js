@@ -11,8 +11,9 @@ const app = require('./app');
 
 const PORTA = process.env.PORT || 3000;
 
-if (!process.env.ADMIN_SENHA || !process.env.JWT_SECRET) {
-  console.warn('⚠ Atenção: ADMIN_SENHA e/ou JWT_SECRET não estão definidos no .env — o login da equipe não vai funcionar.');
+if (!process.env.ADMIN_SENHA_HASH || !process.env.JWT_SECRET) {
+  console.warn('⚠ Atenção: ADMIN_SENHA_HASH e/ou JWT_SECRET não estão definidos no .env — o login da equipe não vai funcionar.');
+  console.warn('  Gere o hash com: npm run gerar-senha "sua-senha-aqui"');
 }
 
 app.listen(PORTA, () => {

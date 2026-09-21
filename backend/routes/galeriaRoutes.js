@@ -9,6 +9,7 @@
 const express = require('express');
 const { ler, escrever, gerarId } = require('../utils/jsonStore');
 const { exigirAdmin } = require('../middleware/authMiddleware');
+const { textoPreenchido, urlValida } = require('../utils/validacao');
 
 const router = express.Router();
 const ARQUIVO = 'galeria.json';
@@ -28,9 +29,9 @@ router.post('/', exigirAdmin, async (req, res, next) => {
   try {
     const { titulo, url, descricao } = req.body || {};
 
-    if (!titulo || !titulo.trim()) return res.status(400).json({ erro: 'Informe o título do evento.' });
+    if (!textoPreenchido(titulo)) return res.status(400).json({ erro: 'Informe o título do evento.' });
 
-    if (!url || !/^https?:\/\/.+/i.test(url.trim())) {
+    if (!urlValida(url)) {
       return res.status(400).json({ erro: 'Informe uma URL de imagem válida (começando com http:// ou https://).' });
     }
 

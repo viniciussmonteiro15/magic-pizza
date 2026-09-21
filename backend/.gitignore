@@ -1,0 +1,11 @@
+# Dependências (reinstaláveis via `npm install`)
+node_modules/
+
+# Segredos locais — nunca commitar
+.env
+
+# Dados gerados em tempo de execução (cardápio, pedidos, feedbacks, galeria)
+data/
+
+# Logs
+npm-debug.log*

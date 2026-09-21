@@ -1,0 +1,344 @@
+/* ============================================================
+   FORMULÁRIOS — inputs, fieldsets, validação e login admin
+   ============================================================ */
+
+/* ============================================================
+   ABA — FINALIZAR PEDIDO
+   ============================================================ */
+.finalizar-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) { .finalizar-grid { grid-template-columns: 1fr; } }
+
+.dados-form {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 480px) { .dados-form { padding: 22px 18px; } }
+
+.form-group-fieldset { border: none; padding: 0; }
+
+.form-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 22px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.form-group-fieldset:first-child .form-group-title { margin-top: 0; }
+
+.form-group-label-standalone {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-group--wide { grid-column: 1 / -1; }
+
+.form-group label { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+
+.req { color: var(--red-light); }
+.optional { color: var(--gray); font-weight: 400; font-size: 0.8rem; }
+
+.form-group input,
+.input-textarea {
+  border: 1.5px solid var(--black-border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--white);
+  background: var(--black-soft);
+  transition: border-color 0.2s ease;
+  outline: none;
+  width: 100%;
+}
+
+.input-textarea { resize: vertical; min-height: 96px; }
+
+.form-group input::placeholder,
+.input-textarea::placeholder { color: var(--gray-light); }
+
+.form-group input:focus,
+.input-textarea:focus { border-color: var(--red); }
+
+.form-group input.error { border-color: var(--red); background: rgba(214, 54, 44, 0.08); }
+
+.field-error { display: block; font-size: 0.78rem; color: var(--red-light); font-weight: 500; min-height: 16px; }
+
+.field-error--geral { text-align: center; margin-bottom: 6px; }
+
+.field-sucesso {
+  display: block;
+  font-size: 0.85rem;
+  color: #4CAF7A;
+  font-weight: 500;
+  min-height: 16px;
+}
+
+/* Opções de pagamento (radio customizado) */
+.pagamento-opcoes { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.pagamento-opcao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--black-border);
+  border-radius: 100px;
+  background: var(--black-soft);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--gray);
+  transition: all 0.2s ease;
+}
+
+.pagamento-opcao:has(input:checked) {
+  border-color: var(--red);
+  color: var(--white);
+  background: var(--red-soft);
+}
+
+.pagamento-opcao:has(input:focus-visible) {
+  outline: 2px solid var(--red-light);
+  outline-offset: 2px;
+}
+
+.pagamento-opcao input { accent-color: var(--red); }
+
+/* Avaliação por estrelas (aba Feedback) */
+.estrelas-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+
+.estrela-opcao {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--black-border);
+  transition: color 0.15s ease;
+}
+
+.estrela-opcao input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+.estrela-opcao:hover,
+.estrela-opcao:hover ~ .estrela-opcao { color: var(--red-light); }
+
+.estrela-opcao:has(input:checked),
+.estrela-opcao:has(input:checked) ~ .estrela-opcao { color: var(--red-light); }
+
+.estrela-opcao:has(input:focus-visible) {
+  outline: 2px solid var(--red-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Coluna de resumo */
+.resumo-col { display: flex; flex-direction: column; gap: 20px; }
+
+.resumo-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 480px) { .resumo-card { padding: 20px; } }
+
+.resumo-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.resumo-sabores { display: flex; flex-direction: column; gap: 16px; }
+
+.sabores-grupo h4 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+.sabores-grupo ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.sabores-grupo ul li {
+  background: var(--black-soft);
+  border: 1px solid var(--black-border);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.sabores-grupo.doce-grupo ul li { border-color: var(--red); color: var(--red-light); }
+
+/* Equipe */
+.card-equipe { border-top: 3px solid var(--red); }
+
+.equipe-grid { display: flex; gap: 16px; }
+
+@media (max-width: 380px) { .equipe-grid { flex-direction: column; } }
+
+.equipe-item {
+  flex: 1;
+  background: var(--black-soft);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.equipe-icon { font-size: 1.6rem; }
+
+.equipe-num { font-family: var(--font-accent); font-size: 2rem; color: var(--red-light); }
+
+.equipe-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Preço */
+.card-preco { background: linear-gradient(135deg, var(--red-dark), var(--red)); border: none; }
+
+.card-preco .resumo-card-title { color: rgba(247, 245, 242, 0.85); border-color: rgba(255, 255, 255, 0.2); }
+
+.preco-display { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0; }
+
+.preco-pessoas { font-size: 0.9rem; color: rgba(247, 245, 242, 0.8); }
+
+.preco-total { font-family: var(--font-accent); font-size: 3rem; color: var(--white); }
+
+/* Confirmar pedido */
+.confirmar-area { text-align: center; }
+
+.confirmar-disclaimer { font-size: 0.82rem; color: var(--gray); margin-bottom: 12px; line-height: 1.6; }
+
+.btn-confirmar {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-confirmar:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 10px 30px var(--red-soft); }
+
+.btn-confirmar:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-icon { font-size: 1.2rem; }
+
+/* Barra fixa de resumo — visível somente em telas pequenas, e só quando
+   a aba "Finalizar Pedido" está ativa (fica dentro do próprio tab-panel,
+   então herda o display:none do painel inativo). */
+.resumo-fixo-mobile {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 80;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--black-soft);
+  border-top: 1px solid var(--black-border);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.resumo-fixo-info { display: flex; flex-direction: column; }
+.resumo-fixo-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); }
+.resumo-fixo-preco { font-family: var(--font-accent); font-size: 1.5rem; color: var(--red-light); }
+
+.btn-confirmar--mobile { width: auto; padding: 12px 22px; font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .resumo-fixo-mobile { display: flex; }
+  .main-content { padding-bottom: 110px; }
+}
+
+
+/* ============================================================
+   ABA — ÁREA DA EQUIPE (admin)
+   ============================================================ */
+.admin-login { display: flex; justify-content: center; padding: 60px 0; }
+.admin-login[hidden] { display: none; }
+
+.admin-login-card {
+  max-width: 420px;
+  width: 100%;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 480px) { .admin-login-card { padding: 28px 22px; } }
+
+.admin-login-card h2 { font-family: var(--font-display); color: var(--white); margin: 8px 0 12px; }
+
+.admin-login-card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+
+.admin-login-card .form-group { text-align: left; margin-bottom: 16px; }
+
+.admin-login-card .btn-primary { width: 100%; }
+
+.admin-form { margin-top: 12px; }
+
+.admin-subnav { display: flex; gap: 8px; margin: -8px 0 24px; }
+
+.admin-subnav-btn {
+  background: var(--black-card);
+  border: 1.5px solid var(--black-border);
+  color: rgba(247, 245, 242, 0.7);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-subnav-btn.active { background: var(--red); border-color: var(--red); color: var(--white); }
+
+.admin-view[hidden] { display: none; }
+

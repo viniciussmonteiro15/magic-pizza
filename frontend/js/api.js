@@ -66,19 +66,12 @@ const api = {
     });
   },
 
-  /**
-   * Busca os depoimentos de clientes.
-   * NOTA: requer a rota GET /api/feedback no back-end (ainda não implementada
-   * nos arquivos compartilhados). Ver README/observações de integração.
-   */
+  /** Busca os depoimentos de clientes, mais recentes primeiro. */
   buscarFeedbacks() {
     return requisitar('/feedback');
   },
 
-  /**
-   * Envia um novo depoimento de cliente.
-   * NOTA: requer a rota POST /api/feedback no back-end.
-   */
+  /** Envia um novo depoimento de cliente (sem login). */
   criarFeedback(feedback) {
     return requisitar('/feedback', {
       method: 'POST',
@@ -86,18 +79,12 @@ const api = {
     });
   },
 
-  /**
-   * Busca as fotos da galeria de eventos.
-   * NOTA: requer a rota GET /api/galeria no back-end.
-   */
+  /** Busca as fotos da galeria de eventos, mais recentes primeiro. */
   buscarGaleria() {
     return requisitar('/galeria');
   },
 
-  /**
-   * Cadastra uma nova foto na galeria (requer token de administrador).
-   * NOTA: requer a rota POST /api/galeria no back-end.
-   */
+  /** Cadastra uma nova foto na galeria (requer token de administrador). */
   cadastrarFotoGaleria(foto, token) {
     return requisitar('/galeria', {
       method: 'POST',

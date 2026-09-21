@@ -1,0 +1,124 @@
+/* ============================================================
+   COMPONENTES — peças reutilizáveis em várias abas
+   (botões, overlay de agradecimento, cards genéricos)
+   ============================================================ */
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  padding: 13px 28px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--red-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--red-soft);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: rgba(247, 245, 242, 0.75);
+  border: 1px solid var(--black-border);
+  padding: 13px 24px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.btn-secondary:hover { border-color: var(--gray); color: var(--white); }
+
+
+/* ============================================================
+   OVERLAY DE AGRADECIMENTO (usa <dialog> nativo)
+   ============================================================ */
+.obrigado-overlay {
+  border: none;
+  background: transparent;
+  padding: 24px;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  margin: auto;
+}
+
+.obrigado-overlay[open] { display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s ease; }
+
+.obrigado-overlay::backdrop { background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(8px); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.obrigado-card {
+  position: relative;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 24px;
+  padding: 52px 44px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.1s;
+}
+
+@media (max-width: 480px) { .obrigado-card { padding: 40px 24px; } }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.obrigado-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--black-border);
+  background: var(--black-soft);
+  color: var(--gray);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.obrigado-close:hover { color: var(--white); border-color: var(--gray); }
+
+.obrigado-emoji { font-size: 3.5rem; margin-bottom: 16px; animation: bounce 1s ease infinite alternate; }
+
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+
+.obrigado-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: var(--white); margin-bottom: 8px; }
+
+.obrigado-sub { font-size: 1.1rem; color: var(--red-light); font-weight: 500; margin-bottom: 16px; }
+
+.obrigado-msg { font-size: 0.92rem; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+
+.obrigado-details {
+  background: var(--black-soft);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.obrigado-detail-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 500; color: var(--white); }
+
+.obrigado-footer { font-size: 0.9rem; color: var(--gray); margin-bottom: 28px; }
+

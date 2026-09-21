@@ -4,6 +4,7 @@
 
 const express = require('express');
 const { ler, escrever, gerarId } = require('../utils/jsonStore');
+const { textoPreenchido } = require('../utils/validacao');
 
 const router = express.Router();
 const ARQUIVO = 'feedbacks.json';
@@ -28,7 +29,7 @@ router.post('/', async (req, res, next) => {
       return res.status(400).json({ erro: 'A nota deve ser um número inteiro de 1 a 5.' });
     }
 
-    if (!comentario || !comentario.trim()) {
+    if (!textoPreenchido(comentario)) {
       return res.status(400).json({ erro: 'Escreva um comentário sobre a sua experiência.' });
     }
 

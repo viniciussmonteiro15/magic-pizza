@@ -13,7 +13,13 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
         rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- CSS dividido por responsabilidade — a ordem importa: base.css define os
+         tokens (variáveis) que os outros arquivos usam. -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/pages.css" />
 </head>
 
 <body>
@@ -64,11 +70,11 @@
                     <span class="nav-icon" aria-hidden="true">🖼️</span> Galeria de Eventos
                 </button>
 
-                <fieldset class="nav-admin-group">
+                <div class="nav-admin-group">
                     <button class="nav-link nav-link--admin" role="tab" aria-selected="false" aria-controls="tab-admin" id="tab-btn-admin" data-tab="admin">
                         <span class="nav-icon" aria-hidden="true">🔒</span> Área da Equipe
                     </button>
-                </fieldset>
+                </div>
             </nav>
 
             <footer class="sidebar-footer">
@@ -95,9 +101,9 @@
                 <span class="header-badge header-badge--topbar" aria-hidden="true">R$40<small>/pessoa</small></span>
             </header>
 
-            <dialog class="progress-bar" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do pedido" hidden>
+            <div class="progress-bar" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do pedido" hidden>
                 <span class="progress-fill" id="progressFill"></span>
-            </dialog>
+            </div>
 
             <main class="main-content" id="mainContent">
 
@@ -106,7 +112,7 @@
                      ============================================ -->
                 <section class="tab-panel active" id="tab-inicio" role="tabpanel" aria-labelledby="tab-btn-inicio">
                     <header class="home-hero">
-                        <mark class="historia-badge">Desde 2008 · 3.000+ eventos</mark>
+                        <span class="historia-badge">Desde 2008 · 3.000+ eventos</span>
                         <h1 class="historia-title">O rodízio de pizza chega <em>até você</em></h1>
                         <p class="historia-lead">Fornos, ingredientes e equipe completa direto na sua festa — você só escolhe os sabores e a data.</p>
                         <nav class="home-hero-actions" aria-label="Ações rápidas">
@@ -193,7 +199,7 @@
                      ============================================ -->
                 <section class="tab-panel" id="tab-historia" role="tabpanel" aria-labelledby="tab-btn-historia">
                     <header class="historia-hero">
-                        <mark class="historia-badge">Desde 2008</mark>
+                        <span class="historia-badge">Desde 2008</span>
                         <h1 class="historia-title">Uma fatia de <em>magia</em> na sua festa</h1>
                         <p class="historia-lead">O primeiro e mais querido rodízio domiciliar de pizza da região.</p>
                     </header>

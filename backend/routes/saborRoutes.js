@@ -5,6 +5,7 @@
 const express = require('express');
 const { ler, escrever, gerarId } = require('../utils/jsonStore');
 const { exigirAdmin } = require('../middleware/authMiddleware');
+const { textoPreenchido } = require('../utils/validacao');
 
 const router = express.Router();
 const ARQUIVO = 'sabores.json';
@@ -35,8 +36,8 @@ router.post('/', exigirAdmin, async (req, res, next) => {
   try {
     const { nome, descricao, tipo } = req.body || {};
 
-    if (!nome || !nome.trim()) return res.status(400).json({ erro: 'Informe o nome do sabor.' });
-    if (!descricao || !descricao.trim()) return res.status(400).json({ erro: 'Informe a descrição do sabor.' });
+    if (!textoPreenchido(nome)) return res.status(400).json({ erro: 'Informe o nome do sabor.' });
+    if (!textoPreenchido(descricao)) return res.status(400).json({ erro: 'Informe a descrição do sabor.' });
     if (!['salgada', 'doce'].includes(tipo)) return res.status(400).json({ erro: 'Tipo de sabor inválido.' });
 
     const sabores = await ler(ARQUIVO, SABORES_PADRAO);

@@ -10,6 +10,7 @@
 
 const fs = require('fs/promises');
 const path = require('path');
+const { randomUUID } = require('crypto');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 
@@ -36,9 +37,9 @@ async function escrever(nomeArquivo, dados) {
   await fs.writeFile(caminho, JSON.stringify(dados, null, 2), 'utf8');
 }
 
-/** Gera um id simples e único (timestamp + número aleatório). */
+/** Gera um id único usando o gerador nativo do Node (sem dependências externas). */
 function gerarId() {
-  return `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+  return randomUUID();
 }
 
 module.exports = { ler, escrever, gerarId };

@@ -4,10 +4,11 @@
 
 const express = require('express');
 const { ler, escrever, gerarId } = require('../utils/jsonStore');
+const { camposFaltando } = require('../utils/validacao');
+const { CONFIG_PADRAO } = require('../config/constantes');
 
 const router = express.Router();
 const ARQUIVO = 'pedidos.json';
-const CONFIG_PADRAO = { precoPorPessoa: 40, pessoasPorEquipe: 25 };
 
 const CAMPOS_OBRIGATORIOS = [
   'nomeCompleto', 'cpf', 'whatsapp', 'formaPagamento',
@@ -19,10 +20,7 @@ router.post('/', async (req, res, next) => {
   try {
     const dados = req.body || {};
 
-    const faltando = CAMPOS_OBRIGATORIOS.filter((campo) => {
-      const valor = dados[campo];
-      return valor === undefined || valor === null || String(valor).trim() === '';
-    });
+    const faltando = camposFaltando(dados, CAMPOS_OBRIGATORIOS);
 
     if (faltando.length > 0) {
       return res.status(400).json({ erro: `Campos obrigatórios faltando: ${faltando.join(', ')}.` });

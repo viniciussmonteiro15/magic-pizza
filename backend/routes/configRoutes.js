@@ -4,10 +4,9 @@
 
 const express = require('express');
 const { ler } = require('../utils/jsonStore');
+const { CONFIG_PADRAO } = require('../config/constantes');
 
 const router = express.Router();
-
-const CONFIG_PADRAO = { precoPorPessoa: 40, pessoasPorEquipe: 25 };
 
 /** GET /api/config/valores — usado pelo simulador e pelo resumo do pedido. */
 router.get('/valores', async (req, res, next) => {
